@@ -1,0 +1,1 @@
+This script downloads the Debian package of the Iriun Webcam software, extracts it on Fedora systems, and installs the software. No modifications are made to the original application, nor is the package or anything related to it distributed with this script or the RPM package.
