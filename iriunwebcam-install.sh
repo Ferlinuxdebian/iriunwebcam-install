@@ -10,7 +10,7 @@ arg1="$1"
 arg2="$2"
 
 # Function install Iriun Webcam.
-install_irun() {
+install_iriun() {
 # Access tmp directory
 cd $(mktemp -d)
 
