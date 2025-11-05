@@ -9,20 +9,7 @@
 arg1="$1"
 arg2="$2"
 
-# Funcion verify installed repositorie.
-rpmfusion_verify() {
-if [ -e /etc/yum.repos.d/rpmfusion-free.repo ]; then
-    echo "RPM Fusion repository is already installed."
-    echo "Proceeding with Iriun Webcam installation..."
-    install_irun
-else
-    echo "RPM Fusion repository is not installed. Installing now..."
-    echo "Access: https://rpmfusion.org/Configuration"
-    exit 1
-fi
-}
-
-# Function install dependencies necessary for Iriun Webcam.
+# Function install Iriun Webcam.
 install_irun() {
 # Access tmp directory
 cd $(mktemp -d)
@@ -32,7 +19,7 @@ if wget -q https://iriun.gitlab.io/iriunwebcam-2.9.deb; then
     ar -x iriunwebcam-2.9.deb
     tar -xf data.tar.zst -C /
     echo "Iriun Webcam installed successfully."
-    else
+else
     echo "Failed to download Iriun Webcam package."
     echo "Execution sudo iriunwebcam-install -i."
     exit 2
@@ -75,18 +62,18 @@ return 1
 # Some checks before executing routines
 case "$arg1" in
   --version|-v)
-    echo "iriunwebcam-install version - 0.0.1"
-    ;;
+      echo "iriunwebcam-install version - 0.0.1"
+      ;;
   --help|-h)
-    help
-    ;;
+      help
+      ;;
   --install|-i)
-  	rpmfusion_verify
-    ;;
-  --remove_iriun|-r)
-    remove_iriun
-  	;;
+  	  install_iriun
+      ;;
+  --remove|-r)
+      remove_iriun
+  	  ;;
   *)
-    help
-    ;;
+      help
+      ;;
 esac
